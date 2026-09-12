@@ -4,7 +4,19 @@ on:
   pull_request:
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
+    steps:
+      - name: Pull repository
+        uses: actions/checkout@v4
+      - name: Setup golang
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.25.x'
+          cache: true
+      - name: Run tests
+        run: go test ./...
+  linter:
+    runs-on: ubuntu-slim
     steps:
       - name: Pull repository
         uses: actions/checkout@v4
@@ -15,7 +27,3 @@ jobs:
           cache: true
       - name: Run linter
         uses: golangci/golangci-lint-action@v6
-        with:
-          version: v2.4.0
-      - name: Run tests
-        run: go test ./...
