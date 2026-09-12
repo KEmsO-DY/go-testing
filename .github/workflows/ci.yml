@@ -27,3 +27,7 @@ jobs:
           cache: true
       - name: Run linter
         uses: golangci/golangci-lint-action@v7
+  echo:
+    runs-on: ubuntu-slim
+    steps:
+      - uses: hexlet-components/hello-from-hexlet-action@release
