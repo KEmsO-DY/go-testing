@@ -29,5 +29,9 @@ jobs:
         uses: golangci/golangci-lint-action@v7
   echo:
     runs-on: ubuntu-slim
+    needs: linter
     steps:
       - uses: hexlet-components/hello-from-hexlet-action@release
+      - run: echo "Выполнен $ENV_KEY у $GITHUB_WORKFLOW"
+        env:
+          ENV_KEY: "линтер"
